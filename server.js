@@ -5,7 +5,6 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const path = require('path');
-const compression = require('compression');
 
 /**
  * Database
@@ -29,7 +28,6 @@ const app = express();
 app.use(express.json({ extended: false }));
 app.use(cors());
 app.use(cookieParser());
-app.use(compression({ level: 5 }));
 
 /**
  * Routes
