@@ -1,13 +1,16 @@
-import React from "react";
-import Form from "../components/Signin/Form";
-import Header from "../components/Utils/Header";
+// Utils
+import Header from '../components/Utils/Header';
+
+// Components
+import Form from '../components/Signin/Form';
+
 const SignIn = () => {
-  return (
-    <>
-      <Header />
-      <Form />
-    </>
-  );
+	return (
+		<>
+			<Header />
+			<Form />
+		</>
+	);
 };
 
 export default SignIn;
