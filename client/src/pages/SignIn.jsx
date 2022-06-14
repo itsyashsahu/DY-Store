@@ -1,16 +1,16 @@
 // Utils
-import Header from '../components/Utils/Header';
+import Header from "../components/Utils/Header";
 
 // Components
-import Form from '../components/Signin/Form';
+import SignInForm from "../components/Signin/SignInForm";
 
 const SignIn = () => {
-	return (
-		<>
-			<Header />
-			<Form />
-		</>
-	);
+  return (
+    <>
+      <Header />
+      <SignInForm />
+    </>
+  );
 };
 
 export default SignIn;
