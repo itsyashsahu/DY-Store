@@ -5,6 +5,44 @@ import BtnAppstore from "./images/btn-appstore.png";
 import BtnGMarket from "./images/btn-market.png";
 import Payments from "./images/payments.png";
 const HomePageFooter = () => {
+  const columns = [
+    {
+      name: "Store",
+      items: [
+        { itemName: "Join us", link: "/" },
+        { itemName: "Find store", link: "/" },
+        { itemName: "Categories", link: "/" },
+        { itemName: "Patnership", link: "/" },
+      ],
+    },
+    {
+      name: "About",
+      items: [
+        { itemName: "About us", link: "/" },
+        { itemName: "Our history", link: "/" },
+        { itemName: "Our team", link: "/" },
+        { itemName: "Offices", link: "/" },
+      ],
+    },
+    {
+      name: "Help",
+      items: [
+        { itemName: "Contact us", link: "/" },
+        { itemName: "Submit ticket", link: "/" },
+        { itemName: "FAQs", link: "/" },
+        { itemName: "Refunds", link: "/" },
+      ],
+    },
+    {
+      name: "Links",
+      items: [
+        { itemName: "Our terms", link: "/" },
+        { itemName: "Privacy settings", link: "/" },
+        { itemName: "Signup", link: "/" },
+      ],
+    },
+  ];
+
   return (
     <footer className="bg-blue-600">
       {/* section footer top */}
@@ -17,122 +55,26 @@ const HomePageFooter = () => {
                 Company name. <br /> © 2018- 2021 Templatemount. <br />
                 All rights reserved.
               </p>
-            </aside>{" "}
-            {/* col .// */}
-            <aside className="w-1/2 sm:w-auto flex-auto mb-5">
-              <h3 className="font-semibold"> Store </h3>
-              <ul className="mt-2 space-y-1">
-                <li>
-                  <Link to="#" className="opacity-70 hover:opacity-100">
-                    {" "}
-                    Join us{" "}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="#" className="opacity-70 hover:opacity-100">
-                    {" "}
-                    Find store{" "}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="#" className="opacity-70 hover:opacity-100">
-                    {" "}
-                    Categories{" "}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="#" className="opacity-70 hover:opacity-100">
-                    {" "}
-                    Partnership{" "}
-                  </Link>
-                </li>
-              </ul>
-            </aside>{" "}
-            {/* col .// */}
-            <aside className="w-1/2 sm:w-auto flex-auto mb-5">
-              <h3 className="font-semibold"> About </h3>
-              <ul className="mt-2 space-y-1">
-                <li>
-                  <Link to="#" className="opacity-70 hover:opacity-100">
-                    {" "}
-                    About us{" "}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="#" className="opacity-70 hover:opacity-100">
-                    {" "}
-                    Our history{" "}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="#" className="opacity-70 hover:opacity-100">
-                    {" "}
-                    Our team{" "}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="#" className="opacity-70 hover:opacity-100">
-                    {" "}
-                    Offices{" "}
-                  </Link>
-                </li>
-              </ul>
-            </aside>{" "}
-            {/* col .// */}
-            <aside className="w-1/2 sm:w-auto flex-auto  mb-5">
-              <h3 className="font-semibold"> Help </h3>
-              <ul className="mt-2 space-y-1">
-                <li>
-                  <Link to="#" className="opacity-70 hover:opacity-100">
-                    {" "}
-                    Contact us{" "}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="#" className="opacity-70 hover:opacity-100">
-                    {" "}
-                    Submit ticket{" "}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="#" className="opacity-70 hover:opacity-100">
-                    {" "}
-                    FAQs{" "}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="#" className="opacity-70 hover:opacity-100">
-                    {" "}
-                    Refunds{" "}
-                  </Link>
-                </li>
-              </ul>
-            </aside>{" "}
-            {/* col .// */}
-            <aside className="w-1/2 sm:w-auto flex-auto  mb-5">
-              <h3 className="font-semibold"> Links </h3>
-              <ul className="mt-2 space-y-1">
-                <li>
-                  <Link to="#" className="opacity-70 hover:opacity-100">
-                    {" "}
-                    Our terms
-                  </Link>
-                </li>
-                <li>
-                  <Link to="#" className="opacity-70 hover:opacity-100">
-                    {" "}
-                    Privacy setting
-                  </Link>
-                </li>
-                <li>
-                  <Link to="#" className="opacity-70 hover:opacity-100">
-                    {" "}
-                    Sign up{" "}
-                  </Link>
-                </li>
-              </ul>
-            </aside>{" "}
-            {/* col .// */}
+            </aside>
+            {columns.map((col, index) => {
+              console.log(col, index, col);
+              return (
+                <aside className="w-1/2 sm:w-auto flex-auto mb-5">
+                  <h3 className="font-semibold"> {col.name} </h3>
+                  <ul className="mt-2 space-y-1">
+                    {col.items.map((item) => {
+                      return (
+                        <li>
+                          <Link to="#" className="opacity-70 hover:opacity-100">
+                            {item.itemName}
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </aside>
+              );
+            })}
             <aside className="w-1/2 sm:w-auto lg:w-40  mb-5">
               <h3 className="font-semibold"> Apps </h3>
               <Link to="#" className="mt-3 inline-block">

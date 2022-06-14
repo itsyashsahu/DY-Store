@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignIn from "./pages/SignIn";
 import ProductDetail from "./pages/ProductDetail";
 
+// icons css
+import "./components/Utils/fonts/css/all.min.css";
+
 const App = () => {
   return (
     <>

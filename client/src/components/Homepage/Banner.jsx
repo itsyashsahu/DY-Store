@@ -2,6 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Banner = () => {
+  const categories = [
+    "Automobiles",
+    "Clothes and Wear",
+    "Home Interiors",
+    "Computer and Tech",
+    "Tools, Equipment",
+    "Sports and outdoor",
+    "Animal and pets",
+    "Mens Clothing",
+    "Women Clothing",
+  ];
   return (
     <section className="pt-5">
       <div className="container max-w-screen-xl mx-auto px-4">
@@ -9,86 +20,18 @@ const Banner = () => {
           <div className="flex flex-col md:flex-row">
             <aside className="md:w-1/4 flex-auto mb-4 pr-4 md:mb-0">
               <ul>
-                <li>
-                  <Link
-                    className="block px-3 py-2 hover:bg-blue-50 rounded-md hover:text-blue-600"
-                    to="#"
-                  >
-                    Automobiles
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="block px-3 py-2 hover:bg-blue-50 rounded-md hover:text-blue-600"
-                    to="#"
-                  >
-                    Clothes and wear
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="block px-3 py-2 hover:bg-blue-50 rounded-md hover:text-blue-600"
-                    to="#"
-                  >
-                    Home interiors
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="block px-3 py-2 hover:bg-blue-50 rounded-md hover:text-blue-600"
-                    to="#"
-                  >
-                    Computer and tech
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="block px-3 py-2 hover:bg-blue-50 rounded-md hover:text-blue-600"
-                    to="#"
-                  >
-                    Tools, equipments
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="block px-3 py-2 hover:bg-blue-50 rounded-md hover:text-blue-600"
-                    to="#"
-                  >
-                    Sports and outdoor
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="block px-3 py-2 hover:bg-blue-50 rounded-md hover:text-blue-600"
-                    to="#"
-                  >
-                    Animal and pets
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="block px-3 py-2 hover:bg-blue-50 rounded-md hover:text-blue-600"
-                    to="#"
-                  >
-                    Men’s clothing
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="block px-3 py-2 hover:bg-blue-50 rounded-md hover:text-blue-600"
-                    to="#"
-                  >
-                    Women’s clothing
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="block px-3 py-2 hover:bg-blue-50 rounded-md hover:text-blue-600"
-                    to="#"
-                  >
-                    More category
-                  </Link>
-                </li>
+                {categories.map((category) => {
+                  return (
+                    <li>
+                      <Link
+                        className="block px-3 py-2 hover:bg-blue-50 rounded-md hover:text-blue-600"
+                        to="#"
+                      >
+                        {category}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </aside>
             <main className="md:w-3/4 flex-auto">
@@ -118,10 +61,10 @@ const Banner = () => {
               </article>
               {/* banner-main end// */}
             </main>
-          </div>{" "}
+          </div>
           {/* grid.// */}
         </article>
-      </div>{" "}
+      </div>
       {/* container //end */}
     </section>
   );
