@@ -33,7 +33,7 @@ const ProductCard = ({ data }) => {
               </Link>
             </h6>
             <p className="text-sm text-gray-400">Sizes: S, M, XL</p>
-            <span className="font-semibold">${data.price}</span>
+            <span className="font-semibold">$ {data.price}</span>
           </div>
         </article>
       </div>
