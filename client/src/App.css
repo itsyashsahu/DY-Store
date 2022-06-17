@@ -7,3 +7,10 @@
     border-color: rgb(37 99 235 / var(--tw-border-opacity));
     border-bottom-width: 1px;
 }
+
+input[type="radio"]:checked +div+ span {
+    display: block;
+  }
+input[type="radio"]:checked div {
+    display: block;
+  }

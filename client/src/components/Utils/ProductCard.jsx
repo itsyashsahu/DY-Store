@@ -1,26 +1,24 @@
 // Routing
 import { Link } from "react-router-dom";
 
-// Images
-import pImg from "../../ProductImages/10.jpg";
-
-const ProductCard = () => {
+const ProductCard = ({ data }) => {
   return (
     <>
       <div>
         <article className="shadow-sm rounded bg-white border border-gray-200">
-          <Link to="#" className="relative block p-1">
+          <Link to={data.id} className="relative block p-1">
             <img
-              src={pImg}
+              src={data.img}
               className="mx-auto w-auto"
               style={{ height: 250 }}
               height={250}
               alt="Product title here"
             />
-            {/* IF you want to give offer for a product */}
-            {/* <span className="inline-block px-3 py-1 text-sm bg-red-100 text-red-600 rounded-full absolute left-3 top-3">
-              Offer
-            </span> */}
+            {data.offer && (
+              <span className="inline-block px-3 py-1 text-sm bg-red-100 text-red-600 rounded-full absolute left-3 top-3">
+                Offer
+              </span>
+            )}
           </Link>
           <div className="p-4 border-t border-t-gray-200">
             <Link
@@ -31,11 +29,11 @@ const ProductCard = () => {
             </Link>
             <h6>
               <Link to="#" className="text-gray-600 hover:text-blue-500">
-                Product title here
+                {data.title}
               </Link>
             </h6>
             <p className="text-sm text-gray-400">Sizes: S, M, XL</p>
-            <span className="font-semibold">$99.50</span>
+            <span className="font-semibold">$ {data.price}</span>
           </div>
         </article>
       </div>

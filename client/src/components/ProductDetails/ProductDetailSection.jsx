@@ -40,22 +40,22 @@ const ProductDetailSection = () => {
     {
       title: "Travel Bag Jeans Blue Color Modern",
       price: 712.0,
-      link: "/images/asldkjfh",
+      link: "/api/images/8.jpg",
     },
     {
       title: "Apple Watch Series 4 - Space Gray",
       price: 12.99,
-      link: "/images/asldkjfh",
+      link: "/api/images/5.jpg",
     },
     {
       title: "Travel Bag Jeans Blue Color Modern",
       price: 712.0,
-      link: "/images/asldkjfh",
+      link: "/api/images/8.jpg",
     },
     {
       title: "Travel Bag Jeans Blue Color Modern",
       price: 712.0,
-      link: "/images/asldkjfh",
+      link: "/api/images/8.jpg",
     },
   ];
 
@@ -110,7 +110,7 @@ const ProductDetailSection = () => {
                         to="#"
                         className="block w-20 h-20 rounded border border-gray-200 overflow-hidden"
                       >
-                        <img src="images/items/8.jpg" alt="Title" />
+                        <img src={smproduct.link} alt="Title" />
                       </Link>
                     </div>
                     <figcaption className="ml-3">

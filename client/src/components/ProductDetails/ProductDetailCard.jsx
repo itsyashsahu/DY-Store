@@ -14,29 +14,25 @@ const ProductDetailCard = () => {
       </svg>
     );
   };
-  const SmallImgCard = () => {
+  const SmallImgCard = (img) => {
     return (
       <Link
         to="#"
         className="inline-block border border-gray-200 p-1 rounded-md hover:border-blue-500"
       >
-        <img
-          className="w-14 h-14"
-          src="images/items/detail/thumb.jpg"
-          alt="Product title"
-        />
+        <img className="w-14 h-14" src={img.link} alt={img.alt} />
       </Link>
     );
   };
 
   const ProductDetails = {
     title: "Sweater Men New Arrival Casual Pullover Men Long Sleeve",
-    coverImage: "/image/123",
+    coverImage: "/api/images/detail/big.jpg",
     imageGallary: [
-      { link: "", alt: "Back View" },
-      { link: "", alt: "Back View" },
-      { link: "", alt: "Back View" },
-      { link: "", alt: "Back View" },
+      { link: "/api/images/detail/thumb1.jpg", alt: "Back View" },
+      { link: "/api/images/detail/thumb2.jpg", alt: "Back View" },
+      { link: "/api/images/detail/thumb3.jpg", alt: "Back View" },
+      { link: "/api/images/detail/thumb4.jpg", alt: "Back View" },
     ],
     orders: 154,
     rating: 9.3,
@@ -64,7 +60,7 @@ const ProductDetailCard = () => {
               <img
                 className="object-cover inline-block"
                 width={400}
-                src="images/items/detail/big.jpg"
+                src={ProductDetails.coverImage}
                 alt="Product title"
               />
             </div>

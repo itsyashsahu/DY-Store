@@ -1,4 +1,4 @@
 {
-	"jwtSecret": "secret",
-	"mongoURI": "mongodb+srv://sneakyhydra:sneaky123@ucommerce.z0ygv.mongodb.net/?retryWrites=true&w=majority"
+  "jwtSecret": "secret",
+  "mongoURI": "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
 }

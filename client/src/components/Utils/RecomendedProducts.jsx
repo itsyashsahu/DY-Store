@@ -1,45 +1,14 @@
-// Utils
-import ProductCard from "../Utils/ProductCard";
+import React from "react";
+import { Link } from "react-router-dom";
+import ProductCard from "./ProductCard";
 
-const ProductContainer = () => {
+const RecomendedProducts = () => {
   const productCardData = [
-    {
-      title: "T-Shirt",
-      sizes: ["M", "L", "XL"],
-      price: 250,
-      img: "/api/images/10.jpg",
-      offer: true,
-      id: "/productdetails",
-    },
-    {
-      title: "Sweater",
-      sizes: ["M", "L", "XL"],
-      price: 1500,
-      img: "/api/images/11.jpg",
-      offer: false,
-      id: "/productdetails",
-    },
-    {
-      title: "Shorts for Summers",
-      sizes: ["M", "L", "XL"],
-      price: 350,
-      img: "/api/images/9.jpg",
-      offer: false,
-      id: "/productdetails",
-    },
     {
       title: "Plane Solid Color T-Shirt",
       sizes: ["M", "L", "XL"],
       price: 400,
       img: "/api/images/12.jpg",
-      offer: false,
-      id: "/productdetails",
-    },
-    {
-      title: "Simple Blue Blazer",
-      sizes: ["M", "L", "XL"],
-      price: 1800,
-      img: "/api/images/13.jpg",
       offer: false,
       id: "/productdetails",
     },
@@ -62,7 +31,7 @@ const ProductContainer = () => {
     {
       title: "Girls Bags",
       sizes: ["M", "L", "XL"],
-      price: 120,
+      price: 259,
       img: "/api/images/8.jpg",
       offer: false,
       id: "/productdetails",
@@ -70,18 +39,18 @@ const ProductContainer = () => {
   ];
 
   return (
-    <section className="py-10">
+    <section className="pt-10 pb-20 bg-gray-100">
       <div className="container max-w-screen-xl mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8">New products</h2>
+        <h2 className="text-2xl font-semibold mb-8">Recommended products</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {productCardData.map((data) => {
             return <ProductCard data={data} />;
           })}
         </div>
-        {/* grid ./ */}
+        {/* grid .// */}
       </div>
     </section>
   );
 };
 
-export default ProductContainer;
+export default RecomendedProducts;

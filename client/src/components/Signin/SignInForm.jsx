@@ -90,8 +90,6 @@ const SignInForm = () => {
                       className="px-4 py-2 text-center w-full inline-block text-white bg-red-500 border border-transparent rounded-md hover:bg-red-700"
                       to="#"
                     >
-                      {/* Sign in */}
-                      {/* </button> */}
                       <span className="w-full">
                         {formik.errors === 401 ? "Wrong Credentials" : null}
                         {formik.errors === 422 ? "User Does Not Exists" : null}
