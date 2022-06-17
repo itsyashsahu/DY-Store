@@ -6,7 +6,7 @@ const Summary = ({ ttl, tax }) => {
       <h2 className="text-lg font-semibold mb-3">Summary</h2>
       <ul>
         <li className="flex justify-between mb-1">
-          <span>Total price:</span>
+          <span>Sub total:</span>
           <span>$ {ttl}</span>
         </li>
         <li className="flex justify-between mb-1">
@@ -18,7 +18,7 @@ const Summary = ({ ttl, tax }) => {
           <span>$ {tax}</span>
         </li>
         <li className="border-t flex justify-between mt-3 pt-3">
-          <span>Total price:</span>
+          <span>Total :</span>
           <span className="text-gray-900 font-bold">$ {+ttl + +tax}</span>
         </li>
       </ul>

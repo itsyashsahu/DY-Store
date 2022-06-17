@@ -129,21 +129,15 @@ const Checkout = () => {
                 </div> */}
                 {/* radio selection .//end */}
 
-                <Invoice />
+                <Invoice CartItems={CartItems} />
 
-                <div className="flex justify-end space-x-2">
-                  <Link
-                    className="px-5 py-2 inline-block text-gray-700 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 hover:text-blue-600"
-                    to="#"
+                <div className="flex justify-end space-x-2 md:px-10 mb-10">
+                  <button
+                    type="button"
+                    className="w-full py-4 font-semibold text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700"
                   >
-                    Back
-                  </Link>
-                  <Link
-                    className="px-5 py-2 inline-block text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700"
-                    to="#"
-                  >
-                    Continue
-                  </Link>
+                    Proceed to pay
+                  </button>
                 </div>
               </article>
             </main>
@@ -157,7 +151,7 @@ const Checkout = () => {
                     className="px-4 py-2 mb-2 inline-block text-lg w-full text-center font-medium text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700"
                     to="/checkout"
                   >
-                    Checkout
+                    Procced to pay
                   </Link>
                 </div>
                 <hr className="my-4" />
