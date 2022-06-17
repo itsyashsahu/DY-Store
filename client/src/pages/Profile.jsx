@@ -14,6 +14,7 @@ const Profile = () => {
     phone: 1234567890988,
     savedAddress: [
       {
+        id: "09w87dgsdfg",
         address: "Street name",
         city: "Tashkent city",
         house: "House 321",
@@ -23,9 +24,10 @@ const Profile = () => {
         isPrimary: true,
       },
       {
+        id: "09870987asdf",
         address: "Street name",
         city: "Tashkent city",
-        house: "House 321",
+        house: "House 0987",
         building: "Building 123",
         zip: 678989,
         other: "",
@@ -150,22 +152,24 @@ const Profile = () => {
             {/* col.// */}
             <SideNav />
             <main className="md:w-2/3 lg:w-3/4 px-4">
-              <article className="border border-gray-200 bg-white shadow-sm rounded mb-5 p-3 lg:p-5">
+              <article className="border border-gray-200 bg-white shadow-sm rounded mb-4 p-3 lg:p-5">
                 <UserDetails user={user} />
-                <div className="sm:flex mb-5 gap-4">
-                  {user.savedAddress.map((add) => {
-                    return <AddressCard add={add} />;
-                  })}
-                </div>
+                <form class="w-full mb-5">
+                  <fieldset class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {user.savedAddress.map((add) => {
+                        return <AddressCard add={add} />;
+                      })}
+                    </div>
+                  </fieldset>
+                </form>
                 <AddNewAdressBtn />
                 <hr className="my-4" />
-
                 <h3 className="text-xl font-semibold mb-5">Current orders</h3>
                 {user.orders.map((order) => {
                   return <PreviewOrderCard order={order} />;
                 })}
               </article>
-              {/* card.// */}
             </main>
           </div>
           {/* grid.// */}

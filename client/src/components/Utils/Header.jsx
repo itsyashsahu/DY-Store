@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 
 // Images
-import Logo from "./images/header/logo.png";
+import { ReactComponent as Logo } from "./images/logo.svg";
 
 const Header = () => {
   return (
@@ -12,7 +12,9 @@ const Header = () => {
           {/* Brand */}
           <div className="flex-shrink-0 mr-5">
             <Link to="/">
-              <img src={Logo} height={38} alt="Brand" />
+              <div className="h-14 w-24 ml-auto flex justify-end ">
+                <Logo />
+              </div>
             </Link>
           </div>
           {/* Brand .//end */}

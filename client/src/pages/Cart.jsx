@@ -95,7 +95,7 @@ const Cart = () => {
                 <ul className="mb-5">
                   <li className="flex justify-between text-gray-600 mb-1">
                     <span>Total price:</span>
-                    <span>$ {ttl}.00</span>
+                    <span>$ {ttl}</span>
                   </li>
                   <li className="flex justify-between text-gray-600 mb-1">
                     <span>Discount:</span>
