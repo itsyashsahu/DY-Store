@@ -25,7 +25,7 @@ const app = express();
 /**
  * Middlewares
  */
-app.use(express.json({ extended: false }));
+// app.use(express.json({ extended: true }));
 app.use(cors());
 app.use(cookieParser());
 
@@ -34,6 +34,13 @@ app.use(cookieParser());
  */
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/users", require("./routes/users"));
+
+app.get("/api", (req, res) => {
+  res.json({ message: `The API is Runing ${process.env.helloworld} ` });
+});
+
+// trying to server images form the server
+app.use("/api/images/", express.static("productImages"));
 
 /**
  * Serve static assets in production
@@ -45,9 +52,6 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
   );
 }
-
-// trying to server images form the server
-app.use("/api/images/", express.static("productImages"));
 
 /**
  * Listen to port

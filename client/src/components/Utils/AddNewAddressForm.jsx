@@ -1,14 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const AddNewAddressForm = () => {
   return (
     <>
       <div>
-        {/* </div>
-      <div className="md:py-2 md:px-10 "> */}
         <h2 className="text-2xl font-semibold my-5">Add new address</h2>
-        {/* <h2 className="text-xl font-semibold mb-5">Saved address</h2> */}
         <div className="grid md:grid-cols-3 gap-x-3 mt-10 ">
           <div className="mb-4 md:col-span-2">
             <label className="block mb-1"> Street Name* </label>
