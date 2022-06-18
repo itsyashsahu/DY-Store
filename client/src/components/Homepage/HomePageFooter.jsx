@@ -99,11 +99,11 @@ const HomePageFooter = () => {
                   height={38}
                 />
               </Link>
-            </aside>{" "}
+            </aside>
             {/* col ./ */}
-          </div>{" "}
+          </div>
           {/* grid ./ */}
-        </div>{" "}
+        </div>
         {/* container ./ */}
       </section>
       {/* section footer top end */}
@@ -118,7 +118,7 @@ const HomePageFooter = () => {
                 className="h-6"
                 alt="Payment methods"
               />
-            </div>{" "}
+            </div>
             {/* col ./ */}
             <div className="space-x-6">
               <nav className="text-sm space-x-4">
@@ -132,11 +132,11 @@ const HomePageFooter = () => {
                   Accessibility
                 </Link>
               </nav>
-            </div>{" "}
+            </div>
             {/* col ./ */}
-          </div>{" "}
+          </div>
           {/* grid ./ */}
-        </div>{" "}
+        </div>
         {/* container ./ */}
       </section>
       {/* section footer bottom  end */}

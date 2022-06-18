@@ -4,7 +4,7 @@ import { ReactComponent as Logo } from "../../components/Utils/images/logo.svg";
 // Components
 import InvoiceTable from "./InvoiceTable";
 
-const Invoice = ({ CartItems }) => {
+const Invoice = ({ CartItems, setChangeAdd }) => {
   const EditSVG = () => {
     return (
       <svg
@@ -12,10 +12,10 @@ const Invoice = ({ CartItems }) => {
         viewBox="0 0 24 24"
         fill="none"
         stroke="#2563eb"
-        stroke-width="0.7"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="feather feather-edit-3"
+        strokeWidth="0.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="feather feather-edit-3"
       >
         <path d="M12 20h9"></path>
         <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
@@ -58,18 +58,25 @@ const Invoice = ({ CartItems }) => {
             Gandhi Chowk, Ahemdabad,IN
             {/* Here goes the add of the coustomer */}
           </h1>
-          <p className=" flex font-medium md:text-base text-sm text-gray-700 whitespace-nowrap">
+          <div className=" flex font-medium md:text-base text-sm text-gray-700 whitespace-nowrap">
             23 June, 2022
-            <div class="group flex items-end">
-              <p class="">
+            <div className="group flex items-end">
+              <div className="">
                 {/* Hover me{" "} */}
-                <div className="h-5 w-5 ml-1 cursor-pointer">{EditSVG()}</div>
-                <span class='tooltip-text text-xs text-white bg-blue-500 p-3 -mt-16 -ml-6 rounded hidden group-hover:block absolute text-center py-2 px-4 z-50"'>
+                <div
+                  className="h-5 w-5 ml-1 cursor-pointer"
+                  onClick={() => {
+                    setChangeAdd(true);
+                  }}
+                >
+                  {EditSVG()}
+                </div>
+                <span className='tooltip-text text-xs text-white bg-blue-500 div-3 -mt-16 -ml-6 rounded hidden group-hover:block absolute text-center py-2 px-4 z-50"'>
                   Change the delivery address
                 </span>
-              </p>
+              </div>
             </div>
-          </p>
+          </div>
         </div>
         <div className="flex justify-end flex-col"></div>
       </div>

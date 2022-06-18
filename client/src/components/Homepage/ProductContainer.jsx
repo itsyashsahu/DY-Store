@@ -78,7 +78,6 @@ const ProductContainer = () => {
             return <ProductCard data={data} />;
           })}
         </div>
-        {/* grid ./ */}
       </div>
     </section>
   );

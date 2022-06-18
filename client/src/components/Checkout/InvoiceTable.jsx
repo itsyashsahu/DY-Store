@@ -26,12 +26,11 @@ const InvoiceTable = ({ CartItems }) => {
         <ul className="flex flex-col pt-4 space-y-2">
           {CartItems.map((item, index) => {
             return (
-              <li className="flex items-start justify-between">
+              <li key={index} className="flex items-start justify-between">
                 <h3>
                   {item.title}
                   <span className="text-sm dark:text-blue-600">
-                    {" "}
-                    x{item.qty}{" "}
+                    x{item.qty}
                   </span>
                 </h3>
                 <div className="text-right">

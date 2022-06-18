@@ -5,11 +5,23 @@ import Invoice from "../components/Checkout/Invoice";
 import Summary from "../components/Checkout/Summary";
 import AddressCard from "../components/Utils/AddressCard";
 import Header from "../components/Utils/Header";
+import AddNewAddressBtn from "../components/Utils/AddNewAdressBtn";
+import AddNewAddressForm from "../components/Utils/AddNewAddressForm";
 
 const Checkout = () => {
   const savedAddress = [
     {
       id: "09w87dgsdfg",
+      address: "Street name",
+      city: "Tashkent city",
+      house: "House 321",
+      building: "Building 123",
+      zip: 678989,
+      other: "",
+      isPrimary: true,
+    },
+    {
+      id: "09w87dgsg",
       address: "Street name",
       city: "Tashkent city",
       house: "House 321",
@@ -83,8 +95,12 @@ const Checkout = () => {
     setTtl(total.toFixed(2));
     setTax((+total * 0.18).toFixed(2));
   }, []);
+
+  const [changeAdd, setChangeAdd] = useState(false);
+  const [addNewAddress, setAddNewAddress] = useState(false);
   return (
     <>
+      {console.log(addNewAddress)}
       <Header />
       <section className="py-5 sm:py-7 bg-blue-100">
         <div className="container max-w-screen-xl mx-auto px-4">
@@ -112,33 +128,87 @@ const Checkout = () => {
         <div className="container max-w-screen-xl mx-auto px-4">
           <div className="flex flex-col md:flex-row gap-4 lg:gap-8">
             <main className="md:w-2/3">
+              {/* radio selection */}
+
+              {/* radio selection .//end */}
               <article className="border border-gray-200 bg-white shadow-sm rounded p-4 lg:p-6 mb-5">
-                {/* radio selection */}
-                {/* <h2 className="text-xl font-semibold mb-5">
-                  Shipping information
-                </h2>
-                <div className="grid sm:grid-cols-2 gap-3 mb-6">
-                  <AddressCard
-                    add={savedAddress[0]}
-                    checkourAddSelect={false}
-                  />
-                  <AddressCard
-                    add={savedAddress[1]}
-                    checkourAddSelect={false}
-                  />
-                </div> */}
-                {/* radio selection .//end */}
+                {!changeAdd ? (
+                  <>
+                    <Invoice
+                      CartItems={CartItems}
+                      setChangeAdd={setChangeAdd}
+                    />
 
-                <Invoice CartItems={CartItems} />
+                    <div className="flex justify-end space-x-2 md:px-10 mb-10">
+                      <button
+                        type="button"
+                        className="w-full py-4 font-semibold text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700"
+                      >
+                        Proceed to pay
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {addNewAddress ? (
+                      <>
+                        <div className="md:py-2 md:px-10 ">
+                          <AddNewAddressForm />
 
-                <div className="flex justify-end space-x-2 md:px-10 mb-10">
-                  <button
-                    type="button"
-                    className="w-full py-4 font-semibold text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700"
-                  >
-                    Proceed to pay
-                  </button>
-                </div>
+                          <div className="flex justify-end space-x-2 mb-5">
+                            <Link
+                              className="px-5 py-2 inline-block text-gray-700 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 hover:text-blue-600"
+                              to="#"
+                            >
+                              Back
+                            </Link>
+                            <button
+                              onClick={() => {
+                                setAddNewAddress(false);
+                              }}
+                              type="button"
+                              className="px-5 py-2 font-semibold text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700"
+                            >
+                              Continue
+                            </button>
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="md:py-2 md:px-10 ">
+                        <h2 className="text-2xl font-semibold my-5">
+                          Choose your delivery address
+                        </h2>
+                        <h2 className="text-xl font-semibold mb-5">
+                          Saved address
+                        </h2>
+                        <div className="grid sm:grid-cols-2 gap-3 mb-6">
+                          {savedAddress.map((add, index) => {
+                            return <AddressCard key={index} add={add} />;
+                          })}
+                        </div>
+                        <div
+                          onClick={() => {
+                            setAddNewAddress(true);
+                          }}
+                        >
+                          <AddNewAddressBtn />
+                        </div>
+                        <div className="flex justify-end space-x-2 mb-8 mt-8">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setChangeAdd(false);
+                            }}
+                            className="w-full py-4 font-semibold text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700"
+                          >
+                            Continue with this delivery address
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </>
+                )}
               </article>
             </main>
 
