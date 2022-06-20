@@ -1,12 +1,16 @@
-import React from "react";
+// imports
 import { Link } from "react-router-dom";
+
+// Components
 import PreviewOrderCard from "../components/Profile/PreviewOrderCard";
 import SideNav from "../components/Profile/SideNav";
 import UserDetails from "../components/Profile/UserDetails";
-import AddNewAdressBtn from "../components/Utils/AddNewAdressBtn";
+
+// Utils
 import AddressCard from "../components/Utils/AddressCard";
-import Header from "../components/Utils/Header";
+import AddNewAdressBtn from "../components/Utils/AddNewAdressBtn";
 import Navbar from "../components/Utils/Navbar";
+
 const Profile = () => {
   const user = {
     name: "Mr. Jackson Mike",
@@ -122,11 +126,9 @@ const Profile = () => {
 
   return (
     <>
-      <Header />
       <Navbar />
       <section className="py-5 sm:py-7 bg-blue-100">
         <div className="container max-w-screen-xl mx-auto px-4">
-          {/* breadcrumbs start */}
           <ol className="inline-flex flex-wrap text-gray-600 space-x-1 md:space-x-3 items-center">
             <li className="inline-flex items-center">
               <Link className="text-gray-600 hover:text-blue-600" to="#">
@@ -142,23 +144,20 @@ const Profile = () => {
             </li>
             <li className="inline-flex items-center"> Orders </li>
           </ol>
-          {/* breadcrumbs end */}
         </div>
-        {/* /.container */}
       </section>
       <section className="py-10">
         <div className="container max-w-screen-xl mx-auto px-4">
           <div className="flex flex-col md:flex-row -mx-4">
-            {/* col.// */}
             <SideNav />
             <main className="md:w-2/3 lg:w-3/4 px-4">
               <article className="border border-gray-200 bg-white shadow-sm rounded mb-4 p-3 lg:p-5">
                 <UserDetails user={user} />
-                <form class="w-full mb-5">
-                  <fieldset class="space-y-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {user.savedAddress.map((add) => {
-                        return <AddressCard add={add} />;
+                <form className="w-full mb-5">
+                  <fieldset className="space-y-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {user.savedAddress.map((add, i) => {
+                        return <AddressCard key={i} add={add} />;
                       })}
                     </div>
                   </fieldset>
@@ -166,15 +165,13 @@ const Profile = () => {
                 <AddNewAdressBtn />
                 <hr className="my-4" />
                 <h3 className="text-xl font-semibold mb-5">Current orders</h3>
-                {user.orders.map((order) => {
-                  return <PreviewOrderCard order={order} />;
+                {user.orders.map((order, i) => {
+                  return <PreviewOrderCard key={i} order={order} />;
                 })}
               </article>
             </main>
           </div>
-          {/* grid.// */}
         </div>
-        {/* container.// */}
       </section>
     </>
   );

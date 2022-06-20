@@ -1,6 +1,11 @@
 // Routing
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+// components
 import InputField from "../Utils/InputField";
+import AuthContext from "../../context/auth/authContext";
+import AlertContext from "../../context/alert/alertContext";
 
 // Images
 import Facebook from "./images/facebook.svg";
@@ -9,33 +14,44 @@ import Google from "./images/google.svg";
 // imports
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import { useContext, useEffect, useState } from "react";
 
 const SignInForm = () => {
-  const validate = Yup.object({
+  let navigate = useNavigate();
+
+  const authContext = useContext(AuthContext);
+  const alertContext = useContext(AlertContext);
+
+  const { setAlert, loading } = alertContext;
+  const { login, error, clearErrors, token, validate } = authContext;
+  const [Loading, setLoading] = useState(false);
+
+  const validateYup = Yup.object({
     email: Yup.string().email("Email is invalid").required("Email is required"),
     password: Yup.string()
       .min(6, "Password must be at least 6 charaters")
       .required("Password is required"),
   });
 
-  const handleSubmit = (values, actions) => {
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+    if (error === "User already exists") {
+      setAlert(error, "danger");
+    }
+
+    clearErrors();
+  }, [error, token]);
+
+  const handleSubmit = async (values, actions) => {
     console.log("Singin Form Values", values);
-    // axios
-    //   .post("api/users/signin", values)
-    //   .then((res) => {
-    //     // console.log(res);
-    //     if (res.status === 201) {
-    //       setAuthToken(res.data.token);
-    //       // console.log(res.data.token)
-    //       localStorage.setItem("jwtToken",res.data.token);
-    //       // history.push("./signin")
-    //       navigate("/dashboard");
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     // console.log(err);
-    //     actions.setErrors(err.response.status);
-    //   });
+    setLoading(true);
+    const errorMsg = await login(values);
+    if (errorMsg) {
+      actions.setErrors({ msg: errorMsg });
+      setLoading(false);
+    }
   };
 
   return (
@@ -51,7 +67,7 @@ const SignInForm = () => {
               email: "",
               password: "",
             }}
-            validationSchema={validate}
+            validationSchema={validateYup}
             onSubmit={handleSubmit}
           >
             {(formik) => (

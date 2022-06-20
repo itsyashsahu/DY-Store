@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
 const PreviewOrderCard = ({ order }) => {
-  const SmallCard = (product) => {
+  const SmallCard = (product, i) => {
     return (
-      <figure className="flex flex-row mb-4">
+      <figure key={i} className="flex flex-row mb-4">
         <div>
           <Link
             to=""
@@ -77,8 +77,8 @@ const PreviewOrderCard = ({ order }) => {
       </div>
       <hr className="my-4" />
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-2">
-        {order.products.map((product) => {
-          return SmallCard(product);
+        {order.products.map((product, i) => {
+          return SmallCard(product, i);
         })}
       </div>
     </article>

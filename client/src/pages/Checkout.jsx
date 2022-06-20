@@ -1,10 +1,12 @@
+// imports
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
+// Components
 import CartItemsSection from "../components/Checkout/CartItemsSection";
 import Invoice from "../components/Checkout/Invoice";
 import Summary from "../components/Checkout/Summary";
 import AddressCard from "../components/Utils/AddressCard";
-import Header from "../components/Utils/Header";
 import AddNewAddressBtn from "../components/Utils/AddNewAdressBtn";
 import AddNewAddressForm from "../components/Utils/AddNewAddressForm";
 
@@ -100,8 +102,6 @@ const Checkout = () => {
   const [addNewAddress, setAddNewAddress] = useState(false);
   return (
     <>
-      {console.log(addNewAddress)}
-      <Header />
       <section className="py-5 sm:py-7 bg-blue-100">
         <div className="container max-w-screen-xl mx-auto px-4">
           {/* breadcrumbs start */}

@@ -74,8 +74,8 @@ const ProductContainer = () => {
       <div className="container max-w-screen-xl mx-auto px-4">
         <h2 className="text-3xl font-bold mb-8">New products</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {productCardData.map((data) => {
-            return <ProductCard data={data} />;
+          {productCardData.map((data, index) => {
+            return <ProductCard data={data} key={index} />;
           })}
         </div>
       </div>

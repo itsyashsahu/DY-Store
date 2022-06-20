@@ -1,4 +1,4 @@
-import React from "react";
+// imports
 import { Link } from "react-router-dom";
 
 const CartItemCard = ({ item }) => {
@@ -27,11 +27,10 @@ const CartItemCard = ({ item }) => {
           </figure>
         </div>
         <div className="">
-          {/* selection */}
           <div className="w-24 relative">
             <select className="block appearance-none border border-gray-200 bg-gray-100 rounded-md py-2 px-3 hover:border-gray-400 focus:outline-none focus:border-gray-400 w-full">
               <option>1</option>
-              <option selected="">2</option>
+              <option>2</option>
               <option>3</option>
             </select>
             <i className="absolute inset-y-0 right-0 p-2 text-gray-400">
@@ -45,7 +44,6 @@ const CartItemCard = ({ item }) => {
               </svg>
             </i>
           </div>
-          {/* selection .//end */}
         </div>
         <div>
           <div className="leading-5">

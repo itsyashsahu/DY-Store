@@ -1,5 +1,6 @@
 // Routing
 import { Routes, Route } from "react-router-dom";
+import AuthRouting from "./components/Utils/AuthRouting";
 
 // Pages
 import Home from "./pages/Home";
@@ -14,17 +15,45 @@ import Profile from "./pages/Profile";
 import "./App.css";
 import "./components/Utils/fonts/css/all.min.css";
 
+// Utils
+import Header from "./components/Utils/Header";
+import Logout from "./pages/Logout";
+
+import AuthContext from "./context/auth/authContext";
+import React, { useContext, useEffect } from "react";
+
 const App = () => {
+  const authContext = useContext(AuthContext);
+  const { token, validate } = authContext;
+
+  useEffect(() => {
+    if (!token) {
+      validate();
+    }
+  }, []);
+
   return (
-    <Routes>
-      <Route exact path="/" element={<Home />} />
-      <Route exact path="/signin" element={<SignIn />} />
-      <Route exact path="/productdetails" element={<ProductDetail />} />
-      <Route exact path="/signup" element={<SignUp />} />
-      <Route exact path="/cart" element={<Cart />} />
-      <Route exact path="/checkout" element={<Checkout />} />
-      <Route exact path="/profile" element={<Profile />} />
-    </Routes>
+    <>
+      <Header />
+      <Routes>
+        <Route element={<AuthRouting />}>
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
+        </Route>
+        {/* <Route path="/signup" element={<AuthRouting />}>
+            <Route path="" element={<SignUp />} />
+            </Route>
+            <Route path="/signin" element={<AuthRouting />}>
+            <Route path="" element={<SignIn />} />
+          </Route> */}
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/productdetails" element={<ProductDetail />} />
+        <Route exact path="/cart" element={<Cart />} />
+        <Route exact path="/checkout" element={<Checkout />} />
+        <Route exact path="/profile" element={<Profile />} />
+        <Route exact path="/logout" element={<Logout />} />
+      </Routes>
+    </>
   );
 };
 

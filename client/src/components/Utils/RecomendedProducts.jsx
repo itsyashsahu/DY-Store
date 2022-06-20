@@ -1,5 +1,4 @@
-import React from "react";
-import { Link } from "react-router-dom";
+// components
 import ProductCard from "./ProductCard";
 
 const RecomendedProducts = () => {
@@ -43,11 +42,10 @@ const RecomendedProducts = () => {
       <div className="container max-w-screen-xl mx-auto px-4">
         <h2 className="text-2xl font-semibold mb-8">Recommended products</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {productCardData.map((data) => {
-            return <ProductCard data={data} />;
+          {productCardData.map((data, i) => {
+            return <ProductCard key={i} data={data} />;
           })}
         </div>
-        {/* grid .// */}
       </div>
     </section>
   );

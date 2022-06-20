@@ -102,9 +102,9 @@ const ProductDetailSection = () => {
           <aside className="lg:w-1/4 px-2">
             <article className="border border-gray-200 shadow-sm rounded bg-white p-4">
               <h3 className="mb-5 text-lg font-semibold">Similar products</h3>
-              {similarProducts.map((smproduct) => {
+              {similarProducts.map((smproduct, i) => {
                 return (
-                  <figure className="flex flex-row mb-4">
+                  <figure key={i} className="flex flex-row mb-4">
                     <div>
                       <Link
                         to="#"

@@ -14,9 +14,10 @@ const ProductDetailCard = () => {
       </svg>
     );
   };
-  const SmallImgCard = (img) => {
+  const SmallImgCard = (img, index) => {
     return (
       <Link
+        key={index}
         to="#"
         className="inline-block border border-gray-200 p-1 rounded-md hover:border-blue-500"
       >
@@ -65,8 +66,8 @@ const ProductDetailCard = () => {
               />
             </div>
             <div className="space-x-2 overflow-auto text-center whitespace-nowrap">
-              {ProductDetails.imageGallary.map((img) => {
-                return SmallImgCard(img);
+              {ProductDetails.imageGallary.map((img, index) => {
+                return SmallImgCard(img, index);
               })}
             </div>
             {/* gallery end./ */}
@@ -102,9 +103,9 @@ const ProductDetailCard = () => {
               {ProductDetails.shortDescription}
             </p>
             <ul className="mb-5">
-              {ProductDetails.details.map((dType) => {
+              {ProductDetails.details.map((dType, index) => {
                 return (
-                  <li className="mb-1">
+                  <li className="mb-1" key={index}>
                     <b className="font-medium w-36 inline-block">
                       {dType.Name} :
                     </b>
@@ -118,8 +119,8 @@ const ProductDetailCard = () => {
               <div className="relative w-1/3 lg:w-1/4 mr-2 mb-4">
                 <select className="block appearance-none border border-gray-200 bg-gray-100 rounded-md py-2 px-3 pr-5 hover:border-gray-400 focus:outline-none focus:border-gray-400 w-full">
                   <option>Select size</option>
-                  {ProductDetails.sizesAvailable.map((size) => {
-                    return <option>{size}</option>;
+                  {ProductDetails.sizesAvailable.map((size, index) => {
+                    return <option key={index}>{size}</option>;
                   })}
                 </select>
                 <i className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
@@ -138,8 +139,8 @@ const ProductDetailCard = () => {
               <div className="relative w-1/3 lg:w-1/4 mr-2 mb-4">
                 <select className="block appearance-none border border-gray-200 bg-gray-100 rounded-md py-2 px-3 pr-5 hover:border-gray-400 focus:outline-none focus:border-gray-400 w-full">
                   <option>Select color</option>
-                  {ProductDetails.colorsAvailable.map((color) => {
-                    return <option>{color}</option>;
+                  {ProductDetails.colorsAvailable.map((color, index) => {
+                    return <option key={index}>{color}</option>;
                   })}
                 </select>
                 <i className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">

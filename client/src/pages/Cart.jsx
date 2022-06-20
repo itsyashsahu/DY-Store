@@ -1,6 +1,8 @@
+// Imports
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Header from "../components/Utils/Header";
+
+// Components
 import CartItemCard from "../components/Cart/CartItemCard";
 import RecomendedProducts from "../components/Utils/RecomendedProducts";
 
@@ -63,7 +65,6 @@ const Cart = () => {
 
   return (
     <>
-      <Header />
       <section className="py-5 sm:py-7 bg-blue-100">
         <div className="container max-w-screen-xl mx-auto px-4">
           {/* breadcrumbs start */}
@@ -77,7 +78,6 @@ const Cart = () => {
             <main className="md:w-3/4">
               <article className="border border-gray-200 bg-white shadow-sm rounded mb-5 p-3 lg:p-5">
                 {CartItems.map((item, index) => {
-                  // setTtl(ttl + item.pricing.cost * item.qty);
                   return <CartItemCard item={item} key={index} />;
                 })}
                 <h6 className="font-bold">Free Delivery within 1-2 weeks</h6>
