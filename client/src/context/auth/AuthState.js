@@ -248,6 +248,10 @@ const AuthState = (props) => {
         email,
       };
 
+      if (!lastName) {
+        user.lastName = "undefined";
+      }
+      console.log("finally ther user ", user);
       const errorMsg = await regCustomerGoogle(user);
       if (errorMsg) {
         console.log(errorMsg);

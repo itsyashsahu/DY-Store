@@ -28,14 +28,11 @@ const GoogleOneTapLogin = () => {
     <>
       <button
         id="GoogleButton"
-        // onClick={handleGLogin}
         onClick={() => {
-          // console.log(googleOneTap);
           if (googleOneTap.isAvailable) {
             GoogleOneTapFun(true, true);
           } else {
             GoogleOneTapFun(true, false);
-            //   console.log("Google One Tap is Not Available");
           }
         }}
         className="mb-2 px-4 py-2 w-full flex items-center justify-center text-center disabled:opacity-50 disabled:bg-gray-200 text-gray-700 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 hover:text-blue-600"
