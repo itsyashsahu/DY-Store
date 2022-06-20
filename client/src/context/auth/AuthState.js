@@ -117,7 +117,7 @@ const AuthState = (props) => {
         "Content-Type": "application/json",
       },
     };
-
+    let errorMsg = "";
     try {
       // Make a post request at localhost:5000/api/auth
       const res = await axios.post("api/auth", formData, config);
@@ -134,9 +134,11 @@ const AuthState = (props) => {
       // Dispatch the action to reducer for LOGIN_FAIL
       dispatch({
         type: LOGIN_FAIL,
-        payload: err.response.data.msg,
+        payload: err.response.data.errorMsg,
       });
+      errorMsg = err.response.data.errorMsg;
     }
+    return errorMsg;
   };
 
   // Logout

@@ -80,7 +80,7 @@ router.post(
 
       // If user not found
       if (!user) {
-        return res.status(400).send({ errors: [{ msg: "User not found" }] });
+        return res.status(400).send({ errorMsg: "User not found" });
       }
 
       // Check if password is correct
@@ -88,9 +88,7 @@ router.post(
 
       // If password is incorrect
       if (!isMatch) {
-        return res
-          .status(400)
-          .send({ errors: [{ msg: "Incorrect password" }] });
+        return res.status(400).send({ errorMsg: "Incorrect Credentials" });
       }
 
       // Payload for JWT
