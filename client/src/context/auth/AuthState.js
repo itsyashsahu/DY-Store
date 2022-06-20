@@ -2,6 +2,8 @@
 import { useReducer } from "react";
 import AuthContext from "./authContext";
 import authReducer from "./authReducer";
+import jwtDecode from "jwt-decode";
+
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -13,6 +15,11 @@ import {
   CLEAR_ERRORS,
   VALID_SUCCESS,
   VALID_FAIL,
+  GOOGLE_ONE_LOADING_START,
+  GOOGLE_ONE_LOADING_END,
+  GOOGLE_ONE_LOGIN_SUCCESS,
+  GOOGLE_ONE_LOGIN_FAIL,
+  GOOGLE_ONE_NOT_AVAILABLE,
 } from "../types";
 import axios from "axios";
 
@@ -25,6 +32,11 @@ const AuthState = (props) => {
     user: null,
     error: null,
     token: false,
+    googleOneTap: {
+      loading: false,
+      success: false,
+      isAvailable: true,
+    },
   };
 
   // Init Reducer
@@ -59,6 +71,42 @@ const AuthState = (props) => {
     try {
       // Make a post request at localhost:5000/api/users/customer
       const res = await axios.post("api/users/customer", formData, config);
+
+      // Dispatch the action to reducer for REGISTER_SUCCESS
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data,
+      });
+
+      // Load the user after successful registration
+      loadUser();
+    } catch (err) {
+      // Dispatch the action to reducer for REGISTER_FAIL
+      dispatch({
+        type: REGISTER_FAIL,
+        payload: err.response.data.errorMsg,
+      });
+      errorMsg = err.response.data.errorMsg;
+    }
+    return errorMsg;
+  };
+
+  // Register Customer with google
+  const regCustomerGoogle = async (formData) => {
+    // Set header of the input data
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    let errorMsg = "";
+    try {
+      // Make a post request at localhost:5000/api/users/customer
+      const res = await axios.post(
+        "api/users/loginwithgoogle",
+        formData,
+        config
+      );
 
       // Dispatch the action to reducer for REGISTER_SUCCESS
       dispatch({
@@ -176,6 +224,71 @@ const AuthState = (props) => {
     });
   };
 
+  const GoogleOneTapFun = (oneTap, backdrop) => {
+    // oneTap means do you want onetap login or gbutton login
+    if (backdrop) {
+      dispatch({ type: GOOGLE_ONE_LOADING_START });
+    }
+
+    const handleResponse = async (response) => {
+      const token = response.credential;
+      const decodedToken = jwtDecode(token);
+      const {
+        sub: gid,
+        email,
+        given_name: firstName,
+        family_name: lastName,
+      } = decodedToken;
+
+      console.log(decodedToken);
+      const user = {
+        gid,
+        firstName,
+        lastName,
+        email,
+      };
+
+      const errorMsg = await regCustomerGoogle(user);
+      if (errorMsg) {
+        console.log(errorMsg);
+        dispatch({ type: GOOGLE_ONE_LOGIN_FAIL });
+      }
+      dispatch({ type: GOOGLE_ONE_LOADING_END });
+    };
+    try {
+      window.google.accounts.id.initialize({
+        client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+        callback: handleResponse,
+      });
+      if (state.googleOneTap.isAvailable && oneTap) {
+        window.google.accounts.id.prompt((notification) => {
+          if (notification.isNotDisplayed()) {
+            dispatch({ type: GOOGLE_ONE_NOT_AVAILABLE });
+            dispatch({ type: GOOGLE_ONE_LOADING_END });
+          }
+          if (notification.isSkippedMoment()) {
+            // skipped moment is also triggred even when user cancels the notification
+            dispatch({ type: GOOGLE_ONE_LOADING_END });
+          }
+          if (notification.l === "user_cancel") {
+            dispatch({ type: GOOGLE_ONE_NOT_AVAILABLE });
+            dispatch({ type: GOOGLE_ONE_LOADING_END });
+          }
+        });
+      } else {
+        // render the Gbutton sign in with google button
+        window.google.accounts.id.renderButton(
+          document.getElementById("GoogleButton"),
+          { theme: "outline", size: "large" }
+        );
+      }
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: GOOGLE_ONE_LOADING_END });
+      dispatch({ type: GOOGLE_ONE_NOT_AVAILABLE });
+    }
+  };
+
   return (
     <AuthContext.Provider
       // Provide these values to all components wrapped in AuthContext in App.js
@@ -184,6 +297,7 @@ const AuthState = (props) => {
         user: state.user,
         error: state.error,
         token: state.token,
+        googleOneTap: state.googleOneTap,
         login,
         loadUser,
         logout,
@@ -191,6 +305,8 @@ const AuthState = (props) => {
         regCustomer,
         regAdmin,
         validate,
+        regCustomerGoogle,
+        GoogleOneTapFun,
       }}
     >
       {props.children}

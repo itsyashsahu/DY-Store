@@ -15,17 +15,35 @@ const User = require("../models/User");
 const router = express.Router();
 
 /** Endpoints **\
- * Get logged in user
- * Login
- * Delete cookie / logout
- * Validate user
+ 1) Get logged in user
+ 2) Login the user using email and password
+ 3) Delete cookie / logout the user
+ 4) Validate user if user is logged in
  */
 
+// Routes in these file
 /**
  * @route   GET api/auth
  * @desc    Get logged in user
  * @access  Private
  */
+/**
+ * @route   POST api/auth
+ * @desc    Authorize user and get token
+ * @access  Public
+ */
+/**
+ * @route   DELETE api/auth
+ * @desc    Delete cookie / logout
+ * @access  Private
+ */
+/**
+ * @route   POST api/auth/check
+ * @desc    Validate user
+ * @access  Public
+ */
+
+// GET api/auth
 router.get("/", auth, async (req, res) => {
   // Extract user id from request
   const user_id = req.user_id;
@@ -52,11 +70,7 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
-/**
- * @route   POST api/auth
- * @desc    Authorize user and get token
- * @access  Public
- */
+// POST api/auth
 router.post(
   "/",
   [
@@ -118,11 +132,7 @@ router.post(
   }
 );
 
-/**
- * @route   DELETE api/auth
- * @desc    Delete cookie / logout
- * @access  Private
- */
+// DELETE api/auth
 router.delete("/", auth, async (req, res) => {
   // Delete cookie
   res.clearCookie("token");
@@ -131,11 +141,7 @@ router.delete("/", auth, async (req, res) => {
   return res.send("Logged out");
 });
 
-/**
- * @route   POST api/auth/check
- * @desc    Validate user
- * @access  Public
- */
+// POST api/auth/check
 router.get("/check", async (req, res) => {
   // Get token from cookies
   const token = req.cookies.token;

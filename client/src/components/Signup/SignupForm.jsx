@@ -35,7 +35,7 @@ const SignupForm = () => {
       .required("Last Name is required"),
     Tnc: Yup.boolean().oneOf(
       [true],
-      "You must accept the pricing policy terms and conditions"
+      "You must accept the terms and conditions"
     ),
   });
 
@@ -53,7 +53,8 @@ const SignupForm = () => {
   const handleSubmit = async (values, actions) => {
     setLoading(true);
     const formData = {
-      name: `${values.firstName} ${values.lastName}`,
+      firstName: values.firstName,
+      lastName: values.lastName,
       email: values.email,
       password: values.password,
     };
