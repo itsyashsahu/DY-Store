@@ -26,26 +26,13 @@ import { ReactComponent as Arrow } from "./components/Signin/images/arrow.svg";
 
 const App = () => {
   const authContext = useContext(AuthContext);
-  const { token, validate, googleOneTap, GoogleOneTapFun } = authContext;
+  const { token, googleOneTap, validateStartup } = authContext;
 
   useEffect(() => {
     if (!token) {
-      validate();
+      validateStartup();
     }
   }, []);
-
-  useEffect(() => {
-    if (!token) {
-      if (googleOneTap.isAvailable) {
-        // Means WE are calling the one tap with backdrop
-        GoogleOneTapFun(true, false);
-      } else {
-        // Means we are calling google signin button without backdrop
-        GoogleOneTapFun(false, false);
-      }
-      // GoogleOneTapFun(false, false);
-    }
-  }, [token]);
 
   return (
     <>

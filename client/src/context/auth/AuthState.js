@@ -118,6 +118,7 @@ const AuthState = (props) => {
       loadUser();
     } catch (err) {
       // Dispatch the action to reducer for REGISTER_FAIL
+      console.log(err);
       dispatch({
         type: REGISTER_FAIL,
         payload: err.response.data.errorMsg,
@@ -215,6 +216,27 @@ const AuthState = (props) => {
       });
     }
   };
+  const validateStartup = async () => {
+    try {
+      const res = await axios.get("/api/auth/check");
+      if (res.data === "Valid") {
+        dispatch({
+          type: VALID_SUCCESS,
+        });
+      }
+    } catch (err) {
+      dispatch({
+        type: VALID_FAIL,
+      });
+      if (state.googleOneTap.isAvailable) {
+        // Means WE are calling the one tap with backdrop
+        GoogleOneTapFun(true, false);
+      } else {
+        // Means we are calling google signin button without backdrop
+        GoogleOneTapFun(false, false);
+      }
+    }
+  };
 
   // Clear Errors
   const clearErrors = () => {
@@ -225,6 +247,10 @@ const AuthState = (props) => {
   };
 
   const GoogleOneTapFun = (oneTap, backdrop) => {
+    if (state.token) {
+      return;
+    }
+
     // oneTap means do you want onetap login or gbutton login
     if (backdrop) {
       dispatch({ type: GOOGLE_ONE_LOADING_START });
@@ -311,6 +337,7 @@ const AuthState = (props) => {
         validate,
         regCustomerGoogle,
         GoogleOneTapFun,
+        validateStartup,
       }}
     >
       {props.children}
