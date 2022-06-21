@@ -22,10 +22,14 @@ import {
   GOOGLE_ONE_NOT_AVAILABLE,
 } from "../types";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 axios.defaults.withCredentials = true;
 
 const AuthState = (props) => {
+  let navigate = useNavigate();
+
   // Set initial state
   const initialState = {
     isAuthenticated: false,
@@ -80,6 +84,8 @@ const AuthState = (props) => {
 
       // Load the user after successful registration
       loadUser();
+      navigate("/");
+      toast.success("Signed up successfully");
     } catch (err) {
       // Dispatch the action to reducer for REGISTER_FAIL
       dispatch({
@@ -87,6 +93,11 @@ const AuthState = (props) => {
         payload: err.response.data.errorMsg,
       });
       errorMsg = err.response.data.errorMsg;
+      if (errorMsg === "User already exists") {
+        toast.error("User already exists");
+      } else if (errorMsg) {
+        toast.error("Error Loggin In try again");
+      }
     }
     return errorMsg;
   };
@@ -116,14 +127,28 @@ const AuthState = (props) => {
 
       // Load the user after successful registration
       loadUser();
+      navigate("/");
+      toast.success("Logged in successfully");
     } catch (err) {
       // Dispatch the action to reducer for REGISTER_FAIL
-      console.log(err);
-      dispatch({
-        type: REGISTER_FAIL,
-        payload: err.response.data.errorMsg,
-      });
-      errorMsg = err.response.data.errorMsg;
+      if (err.response.data && err.response.data.errorMsg) {
+        dispatch({
+          type: REGISTER_FAIL,
+          payload: err.response.data.errorMsg,
+        });
+        errorMsg = err.response.data.errorMsg;
+      } else {
+        dispatch({
+          type: REGISTER_FAIL,
+          payload: err.code,
+        });
+        errorMsg = err;
+      }
+      if (errorMsg === "User already exists") {
+        toast.error("User already exists");
+      } else if (errorMsg) {
+        toast.error("Error Loggin In try again");
+      }
     }
     return errorMsg;
   };
@@ -179,6 +204,8 @@ const AuthState = (props) => {
 
       // Load the user after successful login
       loadUser();
+      navigate("/");
+      toast.success("Logged in successfully");
     } catch (err) {
       // Dispatch the action to reducer for LOGIN_FAIL
       dispatch({
@@ -186,6 +213,13 @@ const AuthState = (props) => {
         payload: err.response.data.errorMsg,
       });
       errorMsg = err.response.data.errorMsg;
+      if (errorMsg === "User not found") {
+        toast.error("User not found");
+      } else if (errorMsg === "Incorrect Credentials") {
+        toast.error("Incorrect Credentials");
+      } else if (errorMsg) {
+        toast.error("Error Loggin In try again");
+      }
     }
     return errorMsg;
   };
@@ -216,6 +250,7 @@ const AuthState = (props) => {
       });
     }
   };
+
   const validateStartup = async () => {
     try {
       const res = await axios.get("/api/auth/check");

@@ -23,6 +23,8 @@ import AuthContext from "./context/auth/authContext";
 import React, { useContext, useEffect } from "react";
 
 import { ReactComponent as Arrow } from "./components/Signin/images/arrow.svg";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const authContext = useContext(AuthContext);
@@ -36,6 +38,7 @@ const App = () => {
 
   return (
     <>
+      <ToastContainer />
       {googleOneTap.loading && (
         <>
           <div className="absolute bg-gray-800 h-full w-full backdrop-blur-sm opacity-25"></div>

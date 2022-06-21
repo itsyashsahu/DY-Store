@@ -1,25 +1,19 @@
 // Routing
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 // Components
 import InputField from "../Utils/InputField";
 import AuthContext from "../../context/auth/authContext";
-import AlertContext from "../../context/alert/alertContext";
 
 // library imports
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 const SignupForm = () => {
-  let navigate = useNavigate();
-
   const authContext = useContext(AuthContext);
-  const alertContext = useContext(AlertContext);
 
-  const { setAlert } = alertContext;
-  const { regCustomer, error, clearErrors, token } = authContext;
+  const { regCustomer } = authContext;
   const [Loading, setLoading] = useState(false);
 
   const validateYup = Yup.object({
@@ -38,17 +32,6 @@ const SignupForm = () => {
       "You must accept the terms and conditions"
     ),
   });
-
-  useEffect(() => {
-    if (token) {
-      navigate("/");
-    }
-    if (error === "User already exists") {
-      setAlert(error, "danger");
-    }
-
-    clearErrors();
-  }, [error, token]);
 
   const handleSubmit = async (values, actions) => {
     setLoading(true);

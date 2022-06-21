@@ -1,26 +1,20 @@
 // Routing
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 // components
 import InputField from "../Utils/InputField";
 import AuthContext from "../../context/auth/authContext";
-import AlertContext from "../../context/alert/alertContext";
 
 // imports
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import GoogleOneTapLogin from "./GoogleOneTapLogin";
 
 const SignInForm = () => {
-  let navigate = useNavigate();
-
   const authContext = useContext(AuthContext);
-  const alertContext = useContext(AlertContext);
 
-  const { setAlert, loading } = alertContext;
-  const { login, error, clearErrors, token, validate } = authContext;
+  const { login } = authContext;
   const [Loading, setLoading] = useState(false);
 
   const validateYup = Yup.object({
@@ -30,20 +24,7 @@ const SignInForm = () => {
       .required("Password is required"),
   });
 
-  useEffect(() => {
-    if (token) {
-      // navigate("/");
-      console.log("navigate the suer now");
-    }
-    if (error === "User already exists") {
-      setAlert(error, "danger");
-    }
-
-    clearErrors();
-  }, [error, token]);
-
   const handleSubmit = async (values, actions) => {
-    console.log("Singin Form Values", values);
     setLoading(true);
     const errorMsg = await login(values);
     if (errorMsg) {
@@ -56,7 +37,6 @@ const SignInForm = () => {
     <>
       <section className="bg-gray-100 py-10" style={{ minHeight: "80vh" }}>
         <div className="container max-w-screen-xl mx-auto px-4">
-          {/*  COMPONENT: SIGN IN */}
           <div
             style={{ maxWidth: 360 }}
             className="mt-5 mb-8 p-4 md:p-7 mx-auto rounded bg-white shadow-lg"
@@ -151,7 +131,6 @@ const SignInForm = () => {
                 </Form>
               )}
             </Formik>
-            {/* Inline style for decoration */}
             <div
               className="text-center border-b my-5"
               style={{ lineHeight: "0.1rem" }}
@@ -166,7 +145,6 @@ const SignInForm = () => {
               </Link>
             </p>
           </div>
-          {/*  COMPONENT: SIGN IN //END */}
         </div>
       </section>
     </>
