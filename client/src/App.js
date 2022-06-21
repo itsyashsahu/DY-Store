@@ -25,6 +25,7 @@ import React, { useContext, useEffect } from "react";
 import { ReactComponent as Arrow } from "./components/Signin/images/arrow.svg";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ActivateAccount from "./pages/ActivateAccount";
 
 const App = () => {
   const authContext = useContext(AuthContext);
@@ -42,7 +43,7 @@ const App = () => {
       {googleOneTap.loading && (
         <>
           <div className="absolute bg-gray-800 h-full w-full backdrop-blur-sm opacity-25"></div>
-          <Arrow className="absolute mt-36 h-4/5 w-4/5" />
+          <Arrow className="absolute hidden sm:block mt-36 h-4/5 w-4/5" />
         </>
       )}
       <Header />
@@ -51,18 +52,15 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
         </Route>
-        {/* <Route path="/signup" element={<AuthRouting />}>
-            <Route path="" element={<SignUp />} />
-            </Route>
-            <Route path="/signin" element={<AuthRouting />}>
-            <Route path="" element={<SignIn />} />
-          </Route> */}
         <Route exact path="/" element={<Home />} />
         <Route exact path="/productdetails" element={<ProductDetail />} />
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/checkout" element={<Checkout />} />
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/logout" element={<Logout />} />
+        <Route exact path="/activate" element={<ActivateAccount />}>
+          <Route path=":activateId" element={<ActivateAccount />} />
+        </Route>
       </Routes>
     </>
   );

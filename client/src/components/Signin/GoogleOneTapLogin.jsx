@@ -1,19 +1,14 @@
 // imports
 import React, { useContext, useEffect } from "react";
-// import { useValue } from "../../context/ContextProvider";
 
 import Google from "./images/google.svg";
 import AuthContext from "../../context/auth/authContext";
-// import { useContext } from "react";
-// import jwtDecode from "jwt-decode";
 
 const GoogleOneTapLogin = () => {
   const authContext = useContext(AuthContext);
   const { GoogleOneTapFun, googleOneTap } = authContext;
 
   useEffect(() => {
-    // GoogleOneTapFun();
-
     if (googleOneTap.isAvailable) {
       // Means WE are calling the one tap with backdrop
       GoogleOneTapFun(true, true);
@@ -21,8 +16,9 @@ const GoogleOneTapLogin = () => {
       // Means we are calling google signin button without backdrop
       GoogleOneTapFun(false, false);
     }
+    // we need to check this since google one tap will not be available for next 2 Hr once user
+    // manually cancels ( closes ) the one tap prompt
   }, [googleOneTap.isAvailable]);
-  // }, []);
 
   return (
     <>

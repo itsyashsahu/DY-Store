@@ -5,11 +5,12 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const path = require("path");
-
+require("dotenv").config();
 /**
  * Database
  */
 const connectDB = require("./config/db");
+const { mailSender } = require("./Utils/mailSender.js");
 connectDB();
 
 /**
@@ -29,6 +30,9 @@ app.use(express.json({ extended: true }));
 app.use(cors());
 app.use(cookieParser());
 
+// console.log(process.env);
+// console.log(process.env.GOOGLE_CLIENT_ID);
+// mailSender();
 /**
  * Routes
  */

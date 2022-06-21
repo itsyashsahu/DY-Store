@@ -8,6 +8,10 @@ const config = require("config");
 const auth = require("../middleware/auth");
 const { check, validationResult } = require("express-validator");
 const User = require("../models/User");
+const jwtDecode = require("jwt-decode");
+
+const util = require("util");
+const jwtVerifyAsync = util.promisify(jwt.verify);
 
 /**
  * Initialize router
@@ -59,7 +63,8 @@ router.get("/", auth, async (req, res) => {
 
     // Store user data in response
     user = {
-      name: user.name,
+      firstName: user.firstName,
+      lastName: user.lastName,
     };
 
     // Return user to the client
@@ -164,6 +169,66 @@ router.get("/check", async (req, res) => {
     res.clearCookie("token");
     return res.status(400).send("Invalid");
   }
+});
+
+// Get /api/auth/activate/
+router.get("/activate", async (req, res) => {
+  const { activateId } = req.query;
+  console.log("token :::", activateId);
+  const decodedToken = jwtDecode(activateId);
+  console.log(decodedToken);
+  let isExpired = false;
+  try {
+    await jwtVerifyAsync(activateId, "secret");
+    console.log("is Valid ", isExpired);
+  } catch (err) {
+    console.log("jwt is Expired");
+    isExpired = true;
+  }
+
+  if (isExpired) {
+    return res.status(400).send({ msg: "Activation Token Expired" });
+  }
+
+  const { firstName, lastName, email, password } = decodedToken;
+  let user = await User.findOne({ email });
+  // If user already exists give him authentication
+  if (user) {
+    return res.status(400).send({ msg: "Account already activated" });
+  }
+
+  user = new User({
+    firstName,
+    lastName,
+    email,
+    password,
+  });
+
+  // Hash Password
+  const salt = await bcrypt.genSalt(10);
+  user.password = await bcrypt.hash(password, salt);
+
+  // Save user in the database
+  await user.save();
+
+  // Payload for JWT
+  // const payload = {
+  //   id: user.id,
+  // };
+
+  // // Sign JWT
+  // const token = jwt.sign(payload, config.get("jwtSecret"), {
+  //   expiresIn: 21600,
+  // });
+
+  // // Create an httpOnly cookie
+  // res.cookie("token", token, {
+  //   httpOnly: true,
+  //   secure: process.env.NODE_ENV !== "development",
+  //   secure: false,
+  //   maxAge: 6 * 60 * 60 * 1000,
+  // });
+  return res.send("Account Activated");
 });
 
 module.exports = router;
