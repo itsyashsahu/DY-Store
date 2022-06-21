@@ -32,7 +32,8 @@ const SignInForm = () => {
 
   useEffect(() => {
     if (token) {
-      navigate("/");
+      // navigate("/");
+      console.log("navigate the suer now");
     }
     if (error === "User already exists") {
       setAlert(error, "danger");

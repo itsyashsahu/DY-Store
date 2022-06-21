@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Modal from "../Utils/Modal";
 
 const SideNav = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+
   const NavItems = [
     { Name: "New Orders", link: "/neworders" },
     { Name: "Order history", link: "/orderhistory" },
@@ -10,6 +13,7 @@ const SideNav = () => {
     { Name: "Profile Settings", link: "/profilesettings" },
     { Name: "Logout", link: "/logout" },
   ];
+
   const NavItem = (item, i) => {
     //  <li>
     //       <Link
@@ -19,6 +23,23 @@ const SideNav = () => {
     //         {item.Name}
     //       </Link>
     //     </li>
+
+    if (item.Name === "Logout") {
+      return (
+        <li key={i}>
+          <button
+            onClick={() => {
+              setModalOpen(true);
+            }}
+            className=" px-3 py-2 w-full flex text-gray-800 hover:bg-blue-100 hover:text-blue-500 rounded-md"
+            to={item.link}
+          >
+            {item.Name}
+          </button>
+        </li>
+      );
+    }
+
     return (
       // <>
       <li key={i}>
@@ -39,6 +60,7 @@ const SideNav = () => {
           return NavItem(item, i);
         })}
       </ul>
+      {modalOpen && <Modal setOpenModal={setModalOpen} />}
     </aside>
   );
 };

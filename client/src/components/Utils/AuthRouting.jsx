@@ -5,7 +5,6 @@ import AuthContext from "../../context/auth/authContext";
 const AuthRouting = ({ children, ...rest }) => {
   const authContext = useContext(AuthContext);
   const { token } = authContext;
-
   const auth = !token;
   return auth ? <Outlet /> : <Navigate to="/" />;
   //   }
