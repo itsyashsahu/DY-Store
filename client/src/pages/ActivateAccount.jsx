@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ReactComponent as AccountActivated } from "../components/Utils/images/AccountActivated.svg";
 import { ReactComponent as AlreadyActivated } from "../components/Utils/images/AlreadyActivated.svg";
 import { ReactComponent as ActivationExpired } from "../components/Utils/images/ActivationExpired.svg";
@@ -9,15 +9,16 @@ import jwtDecode from "jwt-decode";
 
 const ActivateAccount = () => {
   const authContext = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const { login } = authContext;
   let params = useParams();
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState("");
 
   const [timer, setTimer] = useState(5);
+  const [lgloading, setlgloading] = useState(false);
 
   const handleActivation = async (params) => {
-    console.log("sending the request to server", params);
     if (params.activateId && status !== "loading") {
       setStatus("loading");
       axios
@@ -42,26 +43,33 @@ const ActivateAccount = () => {
         email,
         password,
       };
-      console.log("these are the values ", values);
       errorMsg = await login(values);
       if (errorMsg) {
         // setLoading(false);
+        setlgloading(false);
       }
+      setlgloading(false);
     }
   };
+
   useEffect(() => {
     if (status === "Account already activated" || status === "activated") {
       if (timer > 0) {
         setTimeout(() => setTimer(timer - 1), 1000);
       } else if (timer === 0) {
-        console.log("logging user in");
+        setlgloading(true);
+        setStatus("loading");
         LoginUser(params);
       }
     }
   }, [timer, status]);
 
   useEffect(() => {
-    handleActivation(params);
+    if (Object.keys(params).length === 0) {
+      navigate("/");
+    } else {
+      handleActivation(params);
+    }
   }, []);
 
   return (
@@ -109,9 +117,15 @@ const ActivateAccount = () => {
                       fill="currentFill"
                     />
                   </svg>
-                  <h3 className="mb-5 text-lg font-normal text-gray-500 ">
-                    Activating Your Account...
-                  </h3>
+                  {lgloading ? (
+                    <h3 className="mb-5 text-lg font-normal text-gray-500 ">
+                      Logging you in..
+                    </h3>
+                  ) : (
+                    <h3 className="mb-5 text-lg font-normal text-gray-500 ">
+                      Activating Your Account...
+                    </h3>
+                  )}
                 </div>
               )}
               {status === "activated" && (
@@ -119,6 +133,9 @@ const ActivateAccount = () => {
                   <AccountActivated className="h-48 w-48 mb-4" />
                   <h3 className="mb-5 text-lg font-normal text-gray-500 ">
                     Account Activated
+                  </h3>
+                  <h3 className="mb-5 text-lg font-normal text-gray-500 ">
+                    Logging you in {timer} sec ..
                   </h3>
                 </div>
               )}

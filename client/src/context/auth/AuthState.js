@@ -83,9 +83,9 @@ const AuthState = (props) => {
       });
 
       // Load the user after successful registration
-      loadUser();
-      navigate("/");
-      toast.success("Signed up successfully");
+      // loadUser();
+      navigate("/verify");
+      // toast.success("Signed up successfully");
     } catch (err) {
       // Dispatch the action to reducer for REGISTER_FAIL
       dispatch({
@@ -194,7 +194,7 @@ const AuthState = (props) => {
     let errorMsg = "";
     try {
       // Make a post request at localhost:5000/api/auth
-      const res = await axios.post("api/auth", formData, config);
+      const res = await axios.post("/api/auth", formData, config);
 
       // Dispatch the action to reducer for LOGIN_SUCCESS
       dispatch({

@@ -28,6 +28,12 @@ const authReducer = (state, action) => {
       };
 
     case REGISTER_SUCCESS:
+      return {
+        ...state,
+        ...action.payload,
+        isAuthenticated: false,
+        token: false,
+      };
     case LOGIN_SUCCESS:
       return {
         ...state,

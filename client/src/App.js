@@ -26,6 +26,7 @@ import { ReactComponent as Arrow } from "./components/Signin/images/arrow.svg";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ActivateAccount from "./pages/ActivateAccount";
+import VerifyAccount from "./pages/VerifyAccount";
 
 const App = () => {
   const authContext = useContext(AuthContext);
@@ -58,6 +59,7 @@ const App = () => {
         <Route exact path="/checkout" element={<Checkout />} />
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/logout" element={<Logout />} />
+        <Route exact path="/verify" element={<VerifyAccount />} />
         <Route exact path="/activate" element={<ActivateAccount />}>
           <Route path=":activateId" element={<ActivateAccount />} />
         </Route>
