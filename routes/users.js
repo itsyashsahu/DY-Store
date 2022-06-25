@@ -4,11 +4,12 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const config = require("config");
+// const config = require("config");
 const { check, validationResult } = require("express-validator");
 const User = require("../models/User");
 const { mailSender } = require("../Utils/mailSender");
 
+const jwtSecret = process.env.jwtSecret;
 /**
  * Initialize router
  */
@@ -85,7 +86,7 @@ router.post(
           };
 
           // Sign JWT
-          const token = jwt.sign(payload, config.get("jwtSecret"), {
+          const token = jwt.sign(payload, jwtSecret, {
             expiresIn: 21600,
           });
 
@@ -136,7 +137,7 @@ router.post(
       };
 
       // Sign JWT
-      const token = jwt.sign(payload, config.get("jwtSecret"), {
+      const token = jwt.sign(payload, jwtSecret, {
         expiresIn: "30m",
       });
 
@@ -221,7 +222,7 @@ router.post(
 //           };
 
 //           // Sign JWT
-//           const token = jwt.sign(payload, config.get("jwtSecret"), {
+//           const token = jwt.sign(payload, jwtSecret, {
 //             expiresIn: 21600,
 //           });
 
@@ -267,7 +268,7 @@ router.post(
 //       };
 
 //       // Sign JWT
-//       const token = jwt.sign(payload, config.get("jwtSecret"), {
+//       const token = jwt.sign(payload, jwtSecret, {
 //         expiresIn: 21600,
 //       });
 
@@ -324,7 +325,7 @@ router.post(
         };
 
         // Sign JWT
-        const token = jwt.sign(payload, config.get("jwtSecret"), {
+        const token = jwt.sign(payload, jwtSecret, {
           expiresIn: 21600,
         });
         // Create an httpOnly cookie
@@ -352,7 +353,7 @@ router.post(
       };
 
       // Sign JWT
-      const token = jwt.sign(payload, config.get("jwtSecret"), {
+      const token = jwt.sign(payload, jwtSecret, {
         expiresIn: 21600,
       });
 

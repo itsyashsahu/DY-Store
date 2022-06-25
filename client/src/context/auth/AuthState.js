@@ -265,10 +265,10 @@ const AuthState = (props) => {
       });
       if (state.googleOneTap.isAvailable) {
         // Means WE are calling the one tap with backdrop
-        GoogleOneTapFun(true, false);
+        // GoogleOneTapFun(true, false);
       } else {
         // Means we are calling google signin button without backdrop
-        GoogleOneTapFun(false, false);
+        // GoogleOneTapFun(false, false);
       }
     }
   };

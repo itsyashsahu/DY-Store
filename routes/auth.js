@@ -176,10 +176,12 @@ router.get("/activate", async (req, res) => {
   const { activateId } = req.query;
   console.log("token :::", activateId);
   let isExpired = false;
+  let decodedToken;
+
   try {
-    const decodedToken = jwtDecode(activateId);
+    decodedToken = jwtDecode(activateId);
     console.log(decodedToken);
-    await jwtVerifyAsync(activateId, "secret");
+    await jwtVerifyAsync(activateId, process.env.jwtSecret);
     console.log("is Valid ", isExpired);
   } catch (err) {
     console.log("jwt is Expired");

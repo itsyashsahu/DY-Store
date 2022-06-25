@@ -2,8 +2,9 @@
  * Imports
  */
 const mongoose = require("mongoose");
-const config = require("config");
-const db = config.get("mongoURI");
+// const config = require("config");
+// const db = config.get("mongoURI");
+const db = process.env.MONGO_CONNECT_URL;
 
 // saving the Connections string
 // "mongoURI": "mongodb+srv://sneakyhydra:sneaky123@ucommerce.z0ygv.mongodb.net/?retryWrites=true&w=majority"
