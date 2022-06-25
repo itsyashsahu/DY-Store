@@ -39,9 +39,13 @@ const mailSender = (firstName, email, token) => {
       });
       const fs = require("fs");
       const output = fs.readFileSync("Utils/email.html").toString();
-      const foutput = output.replaceAll(
+      let foutput = output.replaceAll(
         "LINKTOBEEXCHANGED",
         process.env.CLIENT_BASE_URL + "/activate/" + token
+      );
+      foutput = foutput.replaceAll(
+        "SERVERLOGOLINKHERE",
+        process.env.SERVER_BASE_URL + "/api/images/logo.svg"
       );
       const mailOptions = {
         from: "DY Store <yashsahu0336@gmail.com>",
