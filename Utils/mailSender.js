@@ -43,10 +43,9 @@ const mailSender = (firstName, email, token) => {
         "LINKTOBEEXCHANGED",
         process.env.CLIENT_BASE_URL + "/activate/" + token
       );
-      foutput = foutput.replaceAll(
-        "SERVERLOGOLINKHERE",
-        process.env.SERVER_BASE_URL + "/api/images/logo.svg"
-      );
+      let svgUrl = process.env.SERVER_BASE_URL + "/api/images/logo.png";
+      foutput = foutput.replaceAll("SERVERLOGOLINKHERE", svgUrl);
+      // console.log("abhi wala ", svgUrl);
       const mailOptions = {
         from: "DY Store <yashsahu0336@gmail.com>",
         to: email,
