@@ -38,6 +38,7 @@ app.use(cookieParser());
  */
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/users", require("./routes/users"));
+app.use("/api/product", require("./routes/product"));
 
 app.get("/api", (req, res) => {
   res.json({ message: `The API is Runing ${process.env.helloworld} ` });
