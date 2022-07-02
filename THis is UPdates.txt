@@ -6,3 +6,4 @@ made the wishlist api
 made the addressed API
 
 made the cart api
+Started to research on implimenting the search score and sorting on its basis 
