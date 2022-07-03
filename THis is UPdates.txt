@@ -11,3 +11,4 @@ improved the search functionality
 implemented the backend pagination
 implemented the get product route
 Recived the product on fronted with categories trending for homepage
+implemented the product page on frontend
