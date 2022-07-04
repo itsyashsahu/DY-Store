@@ -13,3 +13,4 @@ implemented the get product route
 Recived the product on fronted with categories trending for homepage
 implemented the product page on frontend
 Implementing the rating functionality
+implemented the dynamic rating function
