@@ -15,3 +15,4 @@ implemented the product page on frontend
 Implementing the rating functionality
 implemented the dynamic rating function
 improved the cart API 
+changed the defualt product card 
