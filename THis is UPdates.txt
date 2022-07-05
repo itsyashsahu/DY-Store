@@ -16,3 +16,5 @@ Implementing the rating functionality
 implemented the dynamic rating function
 improved the cart API 
 changed the defualt product card 
+implemented the wishlist context 
+
