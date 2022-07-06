@@ -18,3 +18,4 @@ improved the cart API
 changed the defualt product card 
 implemented the wishlist context 
 impliment the logic to detect if rendering product exits in user's cart or not
+impliment the logic to detect if rendering product exits in user's wishlist or not
