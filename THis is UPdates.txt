@@ -20,3 +20,4 @@ implemented the wishlist context
 impliment the logic to detect if rendering product exits in user's cart or not
 impliment the logic to detect if rendering product exits in user's wishlist or not
 implemented the wishlist context and wishlist functionality in cart page
+fixed the floating number error in cart page
