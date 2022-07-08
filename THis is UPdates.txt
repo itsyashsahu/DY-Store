@@ -23,3 +23,4 @@ implemented the wishlist context and wishlist functionality in cart page
 fixed the floating number error in cart page
 Added the add new address button and fixed the addnewAddress api 
 implemented the change primary address 
+Added profile seciton in fronted 
