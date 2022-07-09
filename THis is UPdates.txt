@@ -25,3 +25,4 @@ Added the add new address button and fixed the addnewAddress api
 implemented the change primary address 
 Added profile seciton in fronted 
 made the add new address form with formik on frontend
+improved wishlist and cart in fronted
