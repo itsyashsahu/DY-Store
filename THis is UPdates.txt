@@ -27,5 +27,6 @@ Added profile seciton in fronted
 made the add new address form with formik on frontend
 improved wishlist and cart in fronted
 Added Edit Address Functionality Frontend
-added the edit user functionality
+added the edit user Functionality
 added the change password functionality 
+
