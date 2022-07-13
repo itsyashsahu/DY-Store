@@ -30,3 +30,4 @@ Added Edit Address Functionality Frontend
 added the edit user Functionality
 added the change password functionality 
 added the search page in frontend
+improved the search api backend
