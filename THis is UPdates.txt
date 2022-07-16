@@ -32,3 +32,4 @@ added the change password functionality
 added the search page in frontend
 improved the search api backend
 Implemented the categories search on frontend and implementing pagination on frontend
+implemented the filtered search functionality on frontend
