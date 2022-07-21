@@ -35,3 +35,4 @@ Implemented the categories search on frontend and implementing pagination on fro
 implemented the filtered search functionality on frontend
 fixing search problems
 changed the Search API Implimentation
+Improved search Query and adding pagination on frontend
