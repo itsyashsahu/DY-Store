@@ -36,3 +36,4 @@ implemented the filtered search functionality on frontend
 fixing search problems
 changed the Search API Implimentation
 Improved search Query and adding pagination on frontend
+Added Sort Functionality in the search in Frontend
