@@ -39,3 +39,4 @@ Improved search Query and adding pagination on frontend
 Added Sort Functionality in the search in Frontend
 changed aggregation pipeline in backend
 added admin page 
+added add product page on frontend
