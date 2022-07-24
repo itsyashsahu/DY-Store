@@ -47,3 +47,4 @@ saved the files base64 string in database
 send the saved image files to the frontend
 resolved the buffer and base 64 string problem
 displayed the files in the frontend
+resolved the express buffer and base64 problem 
