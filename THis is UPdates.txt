@@ -44,4 +44,4 @@ added validation and dynamic fields in addproduct form
 add the multiple file inputs handler in addproduct form 
 added the upload multiple file logic
 saved the files base64 string in database
-send the image files to the frontend
+send the saved image files to the frontend
