@@ -45,3 +45,4 @@ add the multiple file inputs handler in addproduct form
 added the upload multiple file logic
 saved the files base64 string in database
 send the saved image files to the frontend
+resolved the buffer and base 64 string problem
