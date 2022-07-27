@@ -49,3 +49,4 @@ resolved the buffer and base 64 string problem
 displayed the files in the frontend
 resolved the express buffer and base64 problem 
 Fixed the image format for other two pages cart and checkout page
+Changing the Cart Api And wishlist APi
